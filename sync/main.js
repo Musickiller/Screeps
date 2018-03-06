@@ -2,6 +2,7 @@
 
 // INIT
 var roleHarvester = require('role.harvester');
+var roleFixer = require('role.fixer')
 var roleBuilder = require('role.builder');
 var roleUpgrader = require('role.upgrader');
 var visualCtl = require('roomctl.visual');
@@ -19,6 +20,7 @@ module.exports.loop = function () {
 
     // Find all creeps (should use memory for that, by the way...)
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
+    var fixers = _.filter(Game.creeps, (creep) => creep.memory.role == 'fixer');
     var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
 
@@ -35,6 +37,10 @@ module.exports.loop = function () {
         var newName = 'Upgrader' + Game.time;
         Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName, 
             {memory: {role: 'upgrader'}});
+    } else if (fixers.length < 2) {
+        var newName = 'Fixer' + Game.time;
+        Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName, 
+            {memory: {role: 'fixer'}});
     }
     
     // ACT as programmed
@@ -46,6 +52,8 @@ module.exports.loop = function () {
             roleBuilder.run(creep);
         } else if (creep.memory.role == 'upgrader') {
             roleUpgrader.run(creep);
+        } else if (creep.memory.role == 'fixer') {
+            roleFixer.run(creep);
         }
     }
 }
