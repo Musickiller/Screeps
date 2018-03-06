@@ -5,7 +5,7 @@ var roleHarvester = require('role.harvester');
 var roleFixer = require('role.fixer')
 var roleBuilder = require('role.builder');
 var roleUpgrader = require('role.upgrader');
-var roleWallFixer = require('role.wallfixer');
+var roleWallfixer = require('role.wallfixer');
 var visualCtl = require('roomctl.visual');
 
 
