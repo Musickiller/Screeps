@@ -1,3 +1,6 @@
+// MAIN FUNCTION
+
+// INIT
 var roleHarvester = require('role.harvester');
 var roleBuilder = require('role.builder');
 var roleUpgrader = require('role.upgrader');
@@ -6,6 +9,7 @@ var visualCtl = require('roomctl.visual');
 
 module.exports.loop = function () {
 
+    // Clear the memory
     for(var name in Memory.creeps) {
         if(!Game.creeps[name]) {
             delete Memory.creeps[name];
@@ -13,35 +17,27 @@ module.exports.loop = function () {
         }
     }
 
+    // Find all creeps (should use memory for that, by the way...)
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
     var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
 
+    // Create new creeps if needed
     if(harvesters.length < 2) {
         var newName = 'Harvester' + Game.time;
-        console.log('Spawning new harvester: ' + newName);
         Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName, 
             {memory: {role: 'harvester'}});
-    }
-    
-    if(builders.length < 3) {
+    } else if(builders.length < 3) {
         var newName = 'Builder' + Game.time;
-       // console.log('Spawning new harvester: ' + newName);
         Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName, 
             {memory: {role: 'builder'}});
-    }
-    
-   // console.log('Harvesters: ' + harvesters.length);
-
-    if(upgraders.length < 2) {
+    } else if (upgraders.length < 2) {
         var newName = 'Upgrader' + Game.time;
-      //  console.log('Spawning new harvester: ' + newName);
         Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName, 
             {memory: {role: 'upgrader'}});
     }
     
-    
-
+    // ACT as programmed
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
         if(creep.memory.role == 'harvester') {
