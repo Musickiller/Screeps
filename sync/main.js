@@ -11,7 +11,7 @@ var visualCtl = require('roomctl.visual');
 
 module.exports.loop = function () {
 	
-	var room = 'E41N49'
+	var here = 'E41N49'
 	
 	// Clear the memory
 	for(var name in Memory.creeps) {
@@ -29,14 +29,14 @@ module.exports.loop = function () {
 	var wallfixers = _.filter(Game.creeps, (creep) => creep.memory.role == 'wallfixer');
 	
 	// Create new creeps if needed
-	if ( Game.rooms[room].energyAvailable > 300 )
+	if ( Game.rooms[here].energyAvailable > 300 )
 	{
 		// harvesters
-		if Game.rooms[room].energyAvailable < Game.rooms[room].energyCapacityAvailable && harvesters.length < 1)
+		if Game.rooms[here].energyAvailable < Game.rooms[here].energyCapacityAvailable && harvesters.length < 1)
 		{
 			var newName = 'Harvester' + Game.time;
 			// spawn a small harvester if that's all you can do
-			if (Game.rooms[room].energyAvailable < 600) {
+			if (Game.rooms[here].energyAvailable < 600) {
 				Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName, 
 								 {memory: {role: 'harvester'}});
 			}
