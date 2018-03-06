@@ -14,11 +14,11 @@ module.exports.loop = function () {
 	// CONTROL CONSTS
 	
 	const room = 'E41N49';
-	const max_builders = 4;
+	const max_builders = 3;
 	const max_fixers = 1;
-	const max_harvesters = 2;
+	const max_harvesters = 1;
 	const max_upgraders = 1;
-	const max_wallfixers = 0;
+	const max_wallfixers = 1;
 	
 	
 	/*
