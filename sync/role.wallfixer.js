@@ -9,7 +9,7 @@ var roleWallfixer = {
 		    creep.say('HARVEST');
 	    } else if (!creep.memory.building && creep.carry.energy == creep.carryCapacity) {
 		    creep.memory.building = true;
-		    creep.say('FIX');
+		    creep.say('FIX WALLS');
 	    } else if (creep.memory.building) {
 		    var walls = _.filter(creep.room.find(FIND_MY_STRUCTURES), (structure) => structure.structureType == 'STRUCTURE_WALL');
 		    var minHits = 90000
