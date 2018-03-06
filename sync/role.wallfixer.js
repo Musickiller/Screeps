@@ -17,7 +17,10 @@ var roleWallfixer = {
 		    if (debug) { creep.memory.state = 2 }
 	    } else if (creep.memory.building) {
 		    if (debug) { creep.memory.state = 3 }
-		    var walls = _.filter(creep.room.find(FIND_MY_STRUCTURES), (structure) => structure.structureType == 'STRUCTURE_WALL');
+		    var walls = _.filter(creep.room.find(FIND_MY_STRUCTURES), (structure) =>
+					 {
+			    return (structure.structureType == 'STRUCTURE_WALL')
+		    			});
 		    if (debug) { creep.memory.state = 4 }
 		    var minHits = 90000
 		    var target
