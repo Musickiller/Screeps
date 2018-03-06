@@ -12,7 +12,7 @@ var roleFixer = {
 	    } else if (creep.memory.building) {
 		    var targets = creep.room.find(FIND_STRUCTURES, {
 			    filter: (structure) => {
-				    return structure.hits < structure.hitsMax*0.7;
+				    return (structure.hits < structure.hitsMax*0.7) || (structure.structureType != 'STRUCTURE_WALL'));
 			    }
 		    });
 		    if(targets.length) {
