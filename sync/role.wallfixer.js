@@ -22,6 +22,7 @@ var roleWallfixer = {
 			    return (structure.structureType == 'STRUCTURE_WALL')
 		    			});
 		    if (debug) { creep.memory.state = 4 }
+		    if (debug) { creep.memory.walls = walls }
 		    var minHits = 90000
 		    var target
 		    for (var wall in walls) {
