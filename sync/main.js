@@ -12,14 +12,14 @@ var visualCtl = require('roomctl.visual');
 
 
 module.exports.loop = function () {
-
-    // Clear the memory
-    for(var name in Memory.creeps) {
-        if(!Game.creeps[name]) {
-            delete Memory.creeps[name];
-            console.log('Clearing non-existing creep memory:', name);
-        }
-    }
+	
+	// Clear the memory
+	for(var name in Memory.creeps) {
+		if(!Game.creeps[name]) {
+			delete Memory.creeps[name];
+			console.log('Clearing non-existing creep memory:', name);
+		}
+	}
 
     // Find all creeps (should use memory for that, by the way...)
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
@@ -39,14 +39,14 @@ module.exports.loop = function () {
                 Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,CARRY,MOVE,MOVE], newName, 
                     {memory: {role: 'harvester'}});
             }
-        } else if(builders.length < 3) {
-            var newName = 'Builder' + Game.time;
-            Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,CARRY,MOVE,MOVE], newName, 
-                {memory: {role: 'builder'}});
         } else if (upgraders.length < 2) {
             var newName = 'Upgrader' + Game.time;
             Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName, 
                 {memory: {role: 'upgrader'}});
+        } else if(builders.length < 3) {
+            var newName = 'Builder' + Game.time;
+            Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,CARRY,MOVE,MOVE], newName, 
+                {memory: {role: 'builder'}});
         } else if (fixers.length < 1) {
             var newName = 'Fixer' + Game.time;
             Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName, 
