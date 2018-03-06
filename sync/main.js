@@ -8,6 +8,8 @@ var roleUpgrader = require('role.upgrader');
 var roleWallFixer = require('role.wallfixer');
 var visualCtl = require('roomctl.visual');
 
+//var current_room = 'E41N49'
+
 
 module.exports.loop = function () {
 
@@ -27,27 +29,33 @@ module.exports.loop = function () {
     var wallfixers = _.filter(Game.creeps, (creep) => creep.memory.role == 'wallfixer');
 
     // Create new creeps if needed
-    if(harvesters.length < 1) {
-        var newName = 'Harvester' + Game.time;
-        Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,CARRY,MOVE,MOVE], newName, 
-            {memory: {role: 'harvester'}});
-    } else if(builders.length < 3) {
-        var newName = 'Builder' + Game.time;
-        Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,CARRY,MOVE,MOVE], newName, 
-            {memory: {role: 'builder'}});
-    } else if (upgraders.length < 2) {
-        var newName = 'Upgrader' + Game.time;
-        Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName, 
-            {memory: {role: 'upgrader'}});
-    } else if (fixers.length < 1) {
-        var newName = 'Fixer' + Game.time;
-        Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName, 
-            {memory: {role: 'fixer'}});
-    } else if (wallfixers.length < 1) {
-        var newName = 'Wallfixer' + Game.time;
-        Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName, 
-            {memory: {role: 'wallfixer'}});
-    }
+    if ( Game.rooms['E41N49'].energyAvailable > 300 ) {
+        if(harvesters.length < 1) {
+            var newName = 'Harvester' + Game.time;
+            if (Game.rooms['E41N49'].energyAvailable < 600) {
+                Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName, 
+                {memory: {role: 'harvester'}});
+            } else {
+                Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,CARRY,MOVE,MOVE], newName, 
+                    {memory: {role: 'harvester'}});
+            }
+        } else if(builders.length < 3) {
+            var newName = 'Builder' + Game.time;
+            Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,CARRY,MOVE,MOVE], newName, 
+                {memory: {role: 'builder'}});
+        } else if (upgraders.length < 2) {
+            var newName = 'Upgrader' + Game.time;
+            Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName, 
+                {memory: {role: 'upgrader'}});
+        } else if (fixers.length < 1) {
+            var newName = 'Fixer' + Game.time;
+            Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName, 
+                {memory: {role: 'fixer'}});
+        } else if (wallfixers.length < 1) {
+            var newName = 'Wallfixer' + Game.time;
+            Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName, 
+                {memory: {role: 'wallfixer'}});
+        }
     
     // ACT as programmed
     for(var name in Game.creeps) {
