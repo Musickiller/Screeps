@@ -16,3 +16,7 @@ Game.rooms['E41N49'].find(FIND_CONSTRUCTION_SITES)
 // STRUCTURES
 // help on construction sites
 for (prpt in Game.rooms['E41N49'].find(FIND_CONSTRUCTION_SITES)[0]) { console.log(prpt) }
+// find structures
+for (struct in Game.rooms['E41N49'].find(FIND_STRUCTURES, { filter: (structure) => { return (structure.structureType == 'STRUCTURE_WALL') } })) {console.log(struct)}
+//get type
+Game.rooms['E41N49'].find(FIND_STRUCTURES)[0].structureType //road
