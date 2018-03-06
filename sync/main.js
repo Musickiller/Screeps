@@ -34,7 +34,7 @@ module.exports.loop = function () {
 	if ( energy > 300 )
 	{
 		// harvesters
-		if energy < e_cap && harvesters.length < 1)
+		if ( Game.rooms[room].energyAvailable < Game.rooms[room].energyCapacityAvailable && harvesters.length < 1)
 		{
 			var newName = 'Harvester' + Game.time;
 			// spawn a small harvester if that's all you can do
