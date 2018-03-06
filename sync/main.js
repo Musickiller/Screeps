@@ -11,7 +11,16 @@ var visualCtl = require('roomctl.visual');
 
 module.exports.loop = function () {
 	
-	var room = 'E41N49'
+	// CONTROL CONSTS
+	
+	const room = 'E41N49';
+	const max_builders = 5;
+	const max_fixers = 2;
+	const max_harvesters = 2;
+	const max_upgraders = 1;
+	const max_wallfixers = 0;
+	
+	
 	/*
 	if ( room.energyCapacityAvailable < 600 )
 	{
@@ -40,7 +49,7 @@ module.exports.loop = function () {
 	if ( Game.rooms[room].energyAvailable > 299 )
 	{
 		// harvesters
-		if ( Game.rooms[room].energyAvailable < Game.rooms[room].energyCapacityAvailable && harvesters.length < 1)
+		if ( Game.rooms[room].energyAvailable < Game.rooms[room].energyCapacityAvailable && harvesters.length < max_harvesters)
 		{
 			var newName = 'Harvester' + Game.time;
 			// spawn a small harvester if that's all you can do
@@ -55,26 +64,26 @@ module.exports.loop = function () {
 			}
 		}
 		// upgraders
-		else if (upgraders.length < 2)
+		else if (upgraders.length < max_upgraders)
 		{
 			var newName = 'Upgrader' + Game.time;
 			Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName, 
 							 {memory: {role: 'upgrader'}});
 		}
 		// builders
-			else if (builders.length < 3)
+			else if (builders.length < max_builders)
 			{
 				var newName = 'Builder' + Game.time;
 				Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName, 
 							 {memory: {role: 'builder'}});
 			}
-			else if (fixers.length < 1)
+			else if (fixers.length < max_fixers)
 			{
 				var newName = 'Fixer' + Game.time;
 				Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName, 
 								 {memory: {role: 'fixer'}});
 			}
-			else if (wallfixers.length < 1)
+			else if (wallfixers.length < max_wallfixers)
 			{
 				var newName = 'Wallfixer' + Game.time;
 				Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName, 
