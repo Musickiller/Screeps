@@ -1,6 +1,8 @@
 var roleHarvester = require('role.harvester');
 var roleBuilder = require('role.builder');
 var roleUpgrader = require('role.upgrader');
+var visualCtl = require('roomctl.visual');
+
 
 module.exports.loop = function () {
 
@@ -41,14 +43,7 @@ module.exports.loop = function () {
             {memory: {role: 'upgrader'}});
     }
     
-    if(Game.spawns['Spawn1'].spawning) { 
-        var spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];
-        Game.spawns['Spawn1'].room.visual.text(
-            '🛠️' + spawningCreep.memory.role,
-            Game.spawns['Spawn1'].pos.x + 1, 
-            Game.spawns['Spawn1'].pos.y, 
-            {align: 'left', opacity: 0.8});
-    }
+    
 
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
