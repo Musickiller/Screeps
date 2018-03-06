@@ -34,7 +34,7 @@ module.exports.loop = function () {
             var newName = 'Harvester' + Game.time;
             if (Game.rooms['E41N49'].energyAvailable < 600) {
                 Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName, 
-                {memory: {role: 'harvester'}});
+                    {memory: {role: 'harvester'}});
             } else {
                 Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,CARRY,MOVE,MOVE], newName, 
                     {memory: {role: 'harvester'}});
@@ -56,6 +56,7 @@ module.exports.loop = function () {
             Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName, 
                 {memory: {role: 'wallfixer'}});
         }
+    }
     
     // ACT as programmed
     for(var name in Game.creeps) {
@@ -73,3 +74,4 @@ module.exports.loop = function () {
         }
     }
 }
+    
