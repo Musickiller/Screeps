@@ -7,6 +7,8 @@ Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], 'Builder' + Game.time, {memo
 // ROOMS
 // room help:
 for (h in Game.rooms['E41N49']) { console.log(h) }
+// energy
+console.log(Game.rooms['E41N49'].energyAvailable + " / " + Game.rooms['E41N49'].energyCapacityAvailable)
 // fing in rooms:
 Game.rooms['E41N49'].find(FIND_CONSTRUCTION_SITES)
 
