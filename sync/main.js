@@ -11,7 +11,7 @@ var visualCtl = require('roomctl.visual');
 
 module.exports.loop = function () {
 	
-	var here = 'E41N49'
+	let here = 'E41N49'
 	
 	// Clear the memory
 	for(var name in Memory.creeps) {
