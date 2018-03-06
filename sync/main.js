@@ -60,7 +60,7 @@ module.exports.loop = function () {
             roleUpgrader.run(creep);
         } else if (creep.memory.role == 'fixer') {
             roleFixer.run(creep);
-        }} else if (creep.memory.role == 'wallfixer') {
+        } else if (creep.memory.role == 'wallfixer') {
             roleWallfixer.run(creep);
         }
     }
