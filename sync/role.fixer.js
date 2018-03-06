@@ -10,17 +10,15 @@ var roleFixer = {
 	        creep.memory.building = true;
 	        creep.say('FIX');
 	    } else if (creep.memory.building) {
-	        var structs = creep.room.find(FIND_MY_STRUCTURES);
-	            var targets = new Array
-	            for (struct in structs) {
-	                if ( struct.hitsMax/struct.hits < 0.5 && struct.structureType != STRUCTURE_WALL ) {
-	                    targets.push(struct)
-	                }
-	            }
-            	if(targets.length) {
-                	if(creep.repair(targets[0]) == ERR_NOT_IN_RANGE) {
-                    		creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
-                	}
+		    var targets = creep.room.find(FIND_STRUCTURES, {
+			    filter: (structure) => {
+				    return structure.hits < structure.hitsMax*0.7;
+			    }
+		    });
+		    if(targets.length) {
+			    if(creep.repair(targets[0]) == ERR_NOT_IN_RANGE) {
+				    creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
+			    }
             	}
 	    } else {
 	        var sources = creep.room.find(FIND_SOURCES);
