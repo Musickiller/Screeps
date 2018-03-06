@@ -18,7 +18,7 @@ module.exports.loop = function () {
 	const max_fixers = 1;
 	const max_harvesters = 1;
 	const max_upgraders = 1;
-	const max_wallfixers = 1;
+	const max_wallfixers = 0;
 	
 	
 	/*
