@@ -44,9 +44,9 @@ module.exports.loop = function () {
         Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName, 
             {memory: {role: 'fixer'}});
     } else if (wallfixers.length < 1) {
-        var newName = 'Fixer' + Game.time;
+        var newName = 'Wallfixer' + Game.time;
         Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName, 
-            {memory: {role: 'fixer'}});
+            {memory: {role: 'wallfixer'}});
     }
     
     // ACT as programmed
