@@ -12,6 +12,14 @@ var visualCtl = require('roomctl.visual');
 module.exports.loop = function () {
 	
 	var room = 'E41N49'
+	/*
+	if ( room.energyCapacityAvailable < 600 )
+	{
+		const max_tools = [WORK,CARRY,MOVE];
+	} else {
+		const max_tools = [WORK,WORK,CARRY,CARRY,MOVE,MOVE];
+	}
+	*/
 	
 	// Clear the memory
 	for(var name in Memory.creeps) {
@@ -57,7 +65,7 @@ module.exports.loop = function () {
 			else if (builders.length < 3)
 			{
 				var newName = 'Builder' + Game.time;
-				Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,CARRY,MOVE,MOVE], newName, 
+				Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName, 
 							 {memory: {role: 'builder'}});
 			}
 			else if (fixers.length < 1)
