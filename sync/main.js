@@ -31,7 +31,7 @@ module.exports.loop = function () {
 	var wallfixers = _.filter(Game.creeps, (creep) => creep.memory.role == 'wallfixer');
 	
 	// Create new creeps if needed
-	if ( energy > 300 )
+	if ( energy > 299 )
 	{
 		// harvesters
 		if ( Game.rooms[room].energyAvailable < Game.rooms[room].energyCapacityAvailable && harvesters.length < 1)
