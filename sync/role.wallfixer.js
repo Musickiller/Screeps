@@ -4,7 +4,7 @@ var roleWallfixer = {
     /** @param {Creep} creep **/
     run: function(creep) {
 	    
-	    const debug = true;
+	    const debug = false;
 	    if (debug) { creep.memory.state = 0 }
 
 	    if(creep.memory.building && creep.carry.energy == 0) {
