@@ -4,26 +4,51 @@ var roleWallfixer = {
     /** @param {Creep} creep **/
     run: function(creep) {
 	    
-	    const debug = false;
+		// debug:
+		// 0 - memory.state
+	    const debug = 3;
 	    if (debug) { creep.memory.state = 0 }
-
-	    if(creep.memory.building && creep.carry.energy == 0) {
+		
+	    if(creep.memory.building && creep.carry.energy == 0)
+		{
+			// when no energy, start harvesting
 		    creep.memory.building = false;
 		    creep.say('HARVEST');
 		    if (debug) { creep.memory.state = 1 }
-	    } else if (!creep.memory.building && creep.carry.energy == creep.carryCapacity) {
+	    } else if (!creep.memory.building &&
+			creep.carry.energy == creep.carryCapacity)
+		{
+			// when not building (so it's harvesting), and full
 		    creep.memory.building = true;
 		    creep.say('FIX WALLS');
 		    if (debug) { creep.memory.state = 2 }
-	    } else if (creep.memory.building) {
+	    } else if (creep.memory.building)
+		{
+			// building code (wallfixing)
 		    if (debug) { creep.memory.state = 3 }
+			
+			/* this code was returning nothing, so I had to simplify it.
+			
 		    var walls = creep.room.find(FIND_STRUCTURES, {
 			    filter: (structure) => {
 				    return (structure.structureType == 'STRUCTURE_WALL');
 			    }
 		    });
+			*/
+			
+			structures = creep.room.find(FIND_STRUCTURES)
+			walls = new Array
+			for (structure in structures)
+			{
+				if ( structure.structureType == 'STRUCTURE_WALL' )
+				{
+					walls.push(structure)
+				}
+			}
+			
 		    if (debug) { creep.memory.state = 4 }
-		    if (debug) { creep.memory.walls = walls }
+		    if (debug > 2) { creep.memory.walls = walls }
+			
 		    var minHits = 90000
 		    var target
 		    for (var wall in walls) {
